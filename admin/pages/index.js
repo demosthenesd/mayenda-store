@@ -24,11 +24,13 @@ export default function Home() {
       <Nav />
 
       <div>logged in! Welcome {session.user.name}</div>
-      <div>logged in! Welcome {session.user.image}</div>
 
-<img src={session.user.image} alt="Girl in a jacket" width="50" height="50"/>
-
-
+      <img
+        src={session.user.image}
+        alt="Girl in a jacket"
+        width="50"
+        height="50"
+      />
     </div>
   );
 }
