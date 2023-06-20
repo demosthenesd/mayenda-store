@@ -2,24 +2,29 @@ import Layout from "@/Components/Layout";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { ReactSortable } from "react-sortablejs";
+
+import { GridLoader } from "react-spinners";
 
 export default function ProductForm({
   _id,
   title: existingTitle,
   description: existingDescription,
   price: existingPrice,
-  images,
+  images: existingImages,
 }) {
   const [title, setTitle] = useState(existingTitle || "");
   const [description, setDescription] = useState(existingDescription || "");
   const [price, setPrice] = useState(existingPrice || "");
   const [goToProducts, setGoToProducts] = useState(false);
+  const [images, setImages] = useState(existingImages || []);
+  const [isUploading, setIsUploading] = useState(false);
 
   const router = useRouter();
 
   async function saveProduct(ev) {
     ev.preventDefault();
-    const data = { title, description, price };
+    const data = { title, description, price, images };
 
     if (_id) {
       //update
@@ -38,15 +43,22 @@ export default function ProductForm({
   async function uploadImages(ev) {
     const files = ev.target?.files;
     if (files?.length > 0) {
+      setIsUploading(true);
       const data = new FormData();
       for (const file of files) {
         data.append("file", file);
       }
-      await fetch("/api/upload", {
-        method: "POST",
-        body: data,
+      const res = await axios.post("/api/upload", data);
+      console.log(res.data);
+      setImages((oldImages) => {
+        return [...oldImages, ...res.data.links];
       });
+      setIsUploading(false);
     }
+  }
+
+  function updateImagesOrder(images) {
+    setImages(images);
   }
 
   return (
@@ -60,7 +72,25 @@ export default function ProductForm({
       />
 
       <label>Photos</label>
-      <div className="mb-2">
+
+      <div className="mb-2 flex flex-wrap gap-3">
+        <ReactSortable
+        className="flex flex-wrap gap-1"
+         list={images}
+         setList={updateImagesOrder}>
+          {!!images?.length &&
+            images.map((link) => (
+              <div key={link} className="h-24">
+                <img className="rounded-lg w-32" src={link} alt="" />
+              </div>
+            ))}
+        </ReactSortable>
+        {isUploading && (
+          <div className="h-24 flex items-center">
+            <GridLoader color="#36d7b7" />
+          </div>
+        )}
+
         <label className="cursor-pointer w-24 h-24 text-center flex items-center justify-center text-sm gap-1 text-gray-600 rounded-xl bg-gray-100">
           {" "}
           <svg
@@ -80,7 +110,6 @@ export default function ProductForm({
           <div>Upload</div>
           <input type="file" onChange={uploadImages} className="hidden" />
         </label>
-        {!images?.length && <div>No images in this product</div>}
       </div>
       <label>Description</label>
       <textarea
