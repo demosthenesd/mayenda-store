@@ -6,7 +6,7 @@ export default function Layout({ children }) {
 
   if (!session) {
     return (
-      <div className={"bg-blue-900 w-screen h-screen flex items-center"}>
+      <div className={"bg-gondola-900 w-screen h-screen flex items-center"}>
         <div className="text-center w-full ">
           <button
             onClick={() => signIn("google")}
@@ -20,7 +20,7 @@ export default function Layout({ children }) {
   }
 
   return (
-    <div className="bg-green-900 min-h-screen flex">
+    <div className="bg-gradient-to-r from-gondola-700 to-gondola-300 min-h-screen flex">
       <Nav />
 
       <div className="bg-white flex-grow mt-3 mr-3 rounded-lg p-4 mb-3">

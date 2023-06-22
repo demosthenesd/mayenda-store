@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="text-blue-900 flex justify-between">
+      <div className="text-rose-900 flex justify-between">
         <h2>
           Hello, <strong>{session?.user?.name}</strong>
         </h2>
