@@ -1,8 +1,9 @@
 import Layout from "@/Components/Layout";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { withSwal } from "react-sweetalert2";
 
-export default function Categories() {
+function Categories({ swal }) {
   const [editedCategory, setEditedCategory] = useState(null);
   const [name, setName] = useState("");
   const [parentCategory, setParentCategory] = useState("");
@@ -40,7 +41,23 @@ export default function Categories() {
     setParentCategory(category.parent?._id);
   }
 
-  function deleteCategory(category) {}
+  function deleteCategory(category) {
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: `Do you want to delete ${category.name}?`,
+        showCancelButton: true,
+        confirmButtonText: "Delete",
+        confirmButtonColor: "#d55",
+      })
+      .then(async (result) => {
+        if (result.isConfirmed) {
+          const { _id } = category;
+          await axios.delete("/api/categories?_id=" + _id);
+          fetchCategories();
+        }
+      });
+  }
 
   return (
     <Layout>
@@ -52,7 +69,7 @@ export default function Categories() {
       </label>
       <form onSubmit={saveCategory} className="flex gap-1">
         <input
-          className="mb-0 "
+          className="mb-0"
           type="text"
           placeholder={"Category name"}
           onChange={(ev) => setName(ev.target.value)}
@@ -60,14 +77,16 @@ export default function Categories() {
         />
 
         <select
-          className="m-0 "
+          className="m-0"
           onChange={(ev) => setParentCategory(ev.target.value)}
           value={parentCategory}
         >
-          <option value="none">No parent category</option>
-          {categories.length &&
+          <option value="">No parent category</option>
+          {categories.length > 0 &&
             categories.map((category) => (
-              <option value={category._id}>{category.name}</option>
+              <option key={category?._id} value={category?._id}>
+                {category?.name}
+              </option>
             ))}
         </select>
         <button type="submit" className="btn btn-primary py-1">
@@ -77,36 +96,39 @@ export default function Categories() {
 
       <table className="basic mt-4">
         <thead>
-          <tr>
+          <tr key="headers">
             <td>Category name</td>
             <td>Parent Category</td>
             <td></td>
           </tr>
         </thead>
         <tbody>
-          {categories.length &&
-            categories.map((category) => (
-              <tr>
-                <td>{category.name}</td>
-                <td>{category?.parent?.name}</td>
-                <td>
-                  <button
-                    onClick={() => editCategory(category)}
-                    className="btn-primary text-sm  mr-1"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => deleteCategory(category)}
-                    className="btn-primary text-sm"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
+          {categories.length > 0
+            ? categories.map((category) => (
+                <tr key={category?._id}>
+                  <td>{category?.name}</td>
+                  <td>{category?.parent?.name}</td>
+                  <td>
+                    <button
+                      onClick={() => editCategory(category)}
+                      className="btn-primary text-sm  mr-1"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => deleteCategory(category)}
+                      className="btn-primary text-sm"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            : null}
         </tbody>
       </table>
     </Layout>
   );
 }
+
+export default withSwal(({ swal }, ref) => <Categories swal={swal} />);
