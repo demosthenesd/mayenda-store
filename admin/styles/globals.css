@@ -27,7 +27,7 @@ label {
 }
 
 .btn-primary {
-  @apply bg-gondola-700 text-white px-4 py-1 mt-0 rounded-md;
+  @apply bg-gondola-700 text-white px-4 py-1  rounded-md;
 }
 
 table.basic {
