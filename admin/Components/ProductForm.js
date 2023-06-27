@@ -69,6 +69,17 @@ export default function ProductForm({
     setImages(images);
   }
 
+  const propertiesToFill = [];
+  if (categories.length > 0 && category) {
+    let categoryInfo = categories.find(({ _id }) => _id === category);
+    propertiesToFill.push(...categoryInfo.properties);
+    while (categoryInfo?.parent?.id) {
+      const parentCategory = categories.find(({ _id }) => _id === categoryInfo);
+      propertiesToFill.push(...parentCategory.properties);
+      categoryInfo = parentCategory;
+    }
+  }
+
   return (
     <form onSubmit={saveProduct}>
       <label>Product Name</label>
@@ -89,6 +100,11 @@ export default function ProductForm({
             ))
           : null}
       </select>
+
+      {propertiesToFill.length > 0
+        ? propertiesToFill.map((property) => <div>{property.name}</div>)
+        : null}
+
       <label>Photos</label>
 
       <div className="mb-2 flex flex-wrap gap-3">
