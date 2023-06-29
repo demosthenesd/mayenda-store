@@ -13,8 +13,12 @@ export default function ProductForm({
   price: existingPrice,
   images: existingImages,
   category: existingCategory,
+  properties: existingProperties,
 }) {
   const [title, setTitle] = useState(existingTitle || "");
+  const [productProperties, setProductProperties] = useState(
+    existingProperties || {}
+  );
   const [description, setDescription] = useState(existingDescription || "");
   const [category, setCategory] = useState(existingCategory || "");
   const [price, setPrice] = useState(existingPrice || "");
@@ -32,7 +36,14 @@ export default function ProductForm({
 
   async function saveProduct(ev) {
     ev.preventDefault();
-    const data = { title, description, price, images, category };
+    const data = {
+      title,
+      description,
+      price,
+      images,
+      category,
+      properties: productProperties,
+    };
 
     if (_id) {
       //update
@@ -69,6 +80,14 @@ export default function ProductForm({
     setImages(images);
   }
 
+  function setProductProp(propName, value) {
+    setProductProperties((prev) => {
+      const newProductProps = { ...prev };
+      newProductProps[propName] = value;
+      return newProductProps;
+    });
+  }
+
   const propertiesToFill = [];
   if (categories.length > 0 && category) {
     let categoryInfo = categories.find(({ _id }) => _id === category);
@@ -102,7 +121,21 @@ export default function ProductForm({
       </select>
 
       {propertiesToFill.length > 0
-        ? propertiesToFill.map((property) => <div>{property.name}</div>)
+        ? propertiesToFill.map((property) => (
+            <div className="flex gap-1">
+              <div>{property.name}</div>
+              <select
+                value={productProperties[property.name]}
+                onChange={(ev) =>
+                  setProductProp(property.name, ev.target.value)
+                }
+              >
+                {property.values.map((v) => (
+                  <option value={v}>{v}</option>
+                ))}
+              </select>
+            </div>
+          ))
         : null}
 
       <label>Photos</label>
