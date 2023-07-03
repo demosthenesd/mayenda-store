@@ -122,18 +122,20 @@ export default function ProductForm({
 
       {propertiesToFill.length > 0
         ? propertiesToFill.map((property) => (
-            <div className="flex gap-1">
-              <div>{property.name}</div>
-              <select
-                value={productProperties[property.name]}
-                onChange={(ev) =>
-                  setProductProp(property.name, ev.target.value)
-                }
-              >
-                {property.values.map((v) => (
-                  <option value={v}>{v}</option>
-                ))}
-              </select>
+            <div className="">
+              <label>{property.name}</label>
+              <div>
+                <select
+                  value={productProperties[property.name]}
+                  onChange={(ev) =>
+                    setProductProp(property.name, ev.target.value)
+                  }
+                >
+                  {property.values.map((v) => (
+                    <option value={v}>{v}</option>
+                  ))}
+                </select>
+              </div>
             </div>
           ))
         : null}
@@ -148,7 +150,10 @@ export default function ProductForm({
         >
           {!!images?.length &&
             images.map((link) => (
-              <div key={link} className="h-24">
+              <div
+                key={link}
+                className="h-24 bg-white p-1 shadow-md rounded-lg border border-gondola-300"
+              >
                 <img className="rounded-lg w-32" src={link} alt="" />
               </div>
             ))}
@@ -159,7 +164,7 @@ export default function ProductForm({
           </div>
         )}
 
-        <label className="cursor-pointer w-24 h-24 text-center flex items-center justify-center text-sm gap-1 text-gray-600 rounded-xl bg-gray-100">
+        <label className="cursor-pointer w-24 h-24 text-center flex items-center justify-center text-sm gap-1 text-gondola-900 rounded-xl bg-white shadow-md border border-gondola-300 flex flex-col">
           {" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
