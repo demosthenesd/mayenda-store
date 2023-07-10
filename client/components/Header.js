@@ -11,18 +11,36 @@ const Logo = styled(Link)`
   text-decoration: none;
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+`;
+
+const NavLink = styled(Link)`
+  color: #aaa;
+  text-decoration: none;
+`;
+
+const StyledNav = styled.nav`
+  display: flex;
+  gap: 15px;
+`;
+
 export default function Header() {
   return (
     <HeaderStyling>
       <Center>
-        <Logo href={"/"}>ECommerce</Logo>
-        <nav>
-          <Link href={"/"}>Home</Link>
-          <Link href={"/products"}>Products</Link>
-          <Link href={"/categories"}>Categories</Link>
-          <Link href={"/account"}>Account</Link>
-          <Link href={"/cart"}>Cart (0)</Link>
-        </nav>
+        <Wrapper>
+          <Logo href={"/"}>ECommerce</Logo>
+          <StyledNav>
+            <NavLink href={"/"}>Home</NavLink>
+            <NavLink href={"/products"}>Products</NavLink>
+            <NavLink href={"/categories"}>Categories</NavLink>
+            <NavLink href={"/account"}>Account</NavLink>
+            <NavLink href={"/cart"}>Cart (0)</NavLink>
+          </StyledNav>
+        </Wrapper>
       </Center>
     </HeaderStyling>
   );
