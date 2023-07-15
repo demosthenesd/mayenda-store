@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import Center from "./Center";
 import Button from "./Button";
+import ButtonLink from "./ButtonLink";
 
 const Bg = styled.div`
   background-color: #222;
@@ -20,7 +21,7 @@ const Desc = styled.p`
 
 const ColumnsWrapper = styled.div`
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 40px;
   img {
     max-width: 100%;
@@ -38,24 +39,24 @@ const ButtonsWrapper = styled.div`
   margin-top: 25px;
 `;
 
-export default function Featured() {
+export default function Featured({ product }) {
   return (
     <Bg>
       <Center>
         <ColumnsWrapper>
           <Column>
             <div>
-              <Title>Kobe 6 Del Sol - Protro</Title>
-              <Desc>
-                Id adipisicing in eu nostrud enim aliquip sit.Amet cillum
-                voluptate adipisicing veniam pariatur Lorem incididunt ut culpa
-                ex.
-              </Desc>
+              <Title>{product.title}</Title>
+              <Desc>{product.description}</Desc>
               <ButtonsWrapper>
-                <Button outline white>
+                <ButtonLink
+                  href={"/products/" + product._id}
+                  outline={1}
+                  white={1}
+                >
                   Read more
-                </Button>
-                <Button primary>
+                </ButtonLink>
+                <Button primary={1}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
