@@ -4,6 +4,7 @@ import fs from "fs";
 import mime from "mime-types";
 import { mongooseConnect } from "@/lib/mongoose";
 const bucketName = "mayenda-next-ecommerce";
+import { isAdminRequest } from "./auth/[...nextauth]";
 
 export default async function handle(req, res) {
   await mongooseConnect();
@@ -16,7 +17,6 @@ export default async function handle(req, res) {
       resolve({ fields, files });
     });
   });
-  console.log(files.file.length);
 
   const client = new S3Client({
     region: "ap-southeast-2",
@@ -32,8 +32,6 @@ export default async function handle(req, res) {
     const ext = file.originalFilename.split(".").pop();
 
     const newFileName = Date.now() * Math.floor(Math.random() * 11) + "." + ext;
-
-    console.log(ext, file);
 
     await client.send(
       new PutObjectCommand({

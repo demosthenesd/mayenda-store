@@ -1,8 +1,9 @@
 import { createGlobalStyle } from "styled-components";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const GlobalStyles = createGlobalStyle`
   body {
+    background-color:#fefefe;
     padding: 0;
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -12,14 +13,17 @@ const GlobalStyles = createGlobalStyle`
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <Helmet>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-        />
-      </Helmet>
-      <GlobalStyles />
-      <Component {...pageProps} />
+      <HelmetProvider>
+        <Helmet>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+          />
+        </Helmet>
+
+        <GlobalStyles />
+        <Component {...pageProps} />
+      </HelmetProvider>
     </>
   );
 }
