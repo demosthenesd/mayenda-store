@@ -54,6 +54,17 @@ ${(props) =>
         height: 20px;
       }
     `}
+    ${(props) =>
+    props.block &&
+    css`
+      display: block;
+      width: 100%;
+    `}  
+       ${(props) =>
+    props.quantity &&
+    css`
+      margin: 0 10px;
+    `}
 `;
 const StyledButton = styled.button`
   ${ButtonStyle}
