@@ -39,7 +39,8 @@ table.basic tr td {
   @apply px-4 py-1 border-b border-gondola-100;
 }
 
-table.basic thead tr td {
+table.basic thead tr td,
+table.basic thead tr th {
   @apply text-sm text-gray-600 uppercase border-b border-gondola-400 px-4 py-2;
 }
 
