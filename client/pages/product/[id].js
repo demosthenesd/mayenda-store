@@ -1,8 +1,10 @@
+import Button from "@/components/Button";
 import Center from "@/components/Center";
 import Header from "@/components/Header";
 import ProductImages from "@/components/ProductImages";
 import Title from "@/components/Title";
 import WhiteBox from "@/components/WhiteBox";
+import CartIcon from "@/icons/CartIcon";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import styled from "styled-components";
@@ -12,6 +14,16 @@ const ColWrapper = styled.div`
   grid-template-columns: 0.8fr 1.2fr;
   gap: 40px;
   margin-top: 40px;
+`;
+
+const PriceRow = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+`;
+
+const Price = styled.span`
+  font-size: 1.5rem;
 `;
 
 export default function ProductPage({ product }) {
@@ -27,6 +39,16 @@ export default function ProductPage({ product }) {
           <div>
             <Title>{product.title}</Title>
             <p>{product.description}</p>
+
+            <PriceRow>
+              <Price>${product.price}</Price>
+              <div>
+                <Button primary={1}>
+                  <CartIcon />
+                  Add to cart
+                </Button>
+              </div>
+            </PriceRow>
           </div>
         </ColWrapper>
       </Center>
