@@ -6,7 +6,7 @@ import Input from "@/components/Input";
 import Table from "@/components/Table";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 const ColumnsWrapper = styled.div`
   display: grid;

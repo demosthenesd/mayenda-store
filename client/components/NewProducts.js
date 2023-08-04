@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import Center from "./Center";
 import ProductBox from "./ProductBox";
 const ProductsGrid = styled.div`

@@ -13,11 +13,12 @@ export default function Orders() {
 
   return (
     <Layout>
-      Orders page here
-      <table className="basic mt-4">
+      <h1>Orders</h1>
+      <table className="basic mt-4 table-auto 	">
         <thead>
           <tr>
             <th>Date</th>
+            <th>Paid</th>
             <th>Recipient</th>
             <th>Address</th>
             <th>Products</th>
@@ -27,7 +28,16 @@ export default function Orders() {
           {orders.length > 0 &&
             orders.map((order) => (
               <tr>
-                <td>{order.createdAt}</td>
+                <td>{new Date(order.createdAt).toLocaleString()}</td>
+                <td
+                  className={
+                    order.paid
+                      ? "font-medium text-green-600"
+                      : "font-medium text-red-600"
+                  }
+                >
+                  {order.paid ? "Paid" : "No"}
+                </td>
                 <td>{order.name}</td>
                 <td>
                   {order.streetAddress} {order.city}, {order.postCode},{" "}
