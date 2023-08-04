@@ -1,7 +1,7 @@
 # mayenda-store | Next JS Full stack app
 
 ![App Screenshot](/imgs/admin-snap.png)
-(/imgs/admin-snap.png)
+![App Screenshot](/imgs/front-home.png)
 
 ## Description
 
