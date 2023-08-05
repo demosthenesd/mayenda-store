@@ -1,8 +1,5 @@
-import Layout from "@/Components/Layout";
+import Layout from "../Components/Layout";
 
-export default function Settings()
-{
-return (
-    <Layout>Settings page here</Layout>
-)
+export default function Settings() {
+  return <Layout>Settings page here</Layout>;
 }
