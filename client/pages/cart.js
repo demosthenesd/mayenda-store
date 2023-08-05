@@ -86,7 +86,7 @@ export default function CartPage() {
       setIsSuccess(true);
       clearCart();
     }
-  });
+  }, []);
 
   function addQuantity(id) {
     addProduct(id);
