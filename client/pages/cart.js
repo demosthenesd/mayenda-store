@@ -155,18 +155,23 @@ export default function CartPage() {
 
                 <tbody>
                   {products.map((product) => (
-                    <tr>
+                    <tr key={product._id}>
                       <ProductInfoCell>
                         <ProductImg>
-                          <img src={product.images[0]} alt={product.title} />
+                          <img
+                            src={product.images[0]}
+                            alt={product.title}
+                            key={product._id}
+                          />
                         </ProductImg>
                         {product.title}
                       </ProductInfoCell>
-                      <td>
+                      <td key={product._id}>
                         <Button
                           onClick={() => subQuantity(product._id)}
                           quantity={1}
                           primary={1}
+                          key={product._id}
                         >
                           -
                         </Button>
@@ -180,7 +185,7 @@ export default function CartPage() {
                           +
                         </Button>
                       </td>
-                      <td>
+                      <td key={product._id}>
                         $
                         {cartProducts.filter((id) => id === product._id)
                           .length * product.price}
