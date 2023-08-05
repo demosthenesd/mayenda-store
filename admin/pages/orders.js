@@ -14,7 +14,7 @@ export default function Orders() {
   return (
     <Layout>
       <h1>Orders</h1>
-      <table className="basic mt-4 table-auto 	">
+      <table className="basic mt-4 table-auto" key="order">
         <thead>
           <tr>
             <th>Date</th>
@@ -30,7 +30,7 @@ export default function Orders() {
               <tr>
                 <td>{new Date(order.createdAt).toLocaleString()}</td>
                 <td
-                  key={order._id}
+                  key={order.name}
                   className={
                     order.paid
                       ? "font-medium text-green-600"
