@@ -115,13 +115,13 @@ function Categories({ swal }) {
       </label>
       <form onSubmit={saveCategory}>
         <div className="flex gap-1">
+          key={name}
           <input
             type="text"
             placeholder={"Category name"}
             onChange={(ev) => setName(ev.target.value)}
             value={name}
           />
-
           <select
             onChange={(ev) => setParentCategory(ev.target.value)}
             value={parentCategory}
@@ -146,7 +146,7 @@ function Categories({ swal }) {
           </button>
           {properties.length > 0
             ? properties?.map((property, index) => (
-                <div className="flex gap-1 mb-2">
+                <div className="flex gap-1 mb-2" key={property.name}>
                   <input
                     className="mb-0"
                     type="text"
@@ -158,6 +158,7 @@ function Categories({ swal }) {
                   />
                   <input
                     className="mb-0"
+                    key={property.values}
                     type="text"
                     value={property.values}
                     onChange={(ev) =>
@@ -173,6 +174,7 @@ function Categories({ swal }) {
                     onClick={() => removeProperty(index)}
                     type="button"
                     className="btn-red text-sm"
+                    key={index}
                   >
                     Remove
                   </button>
