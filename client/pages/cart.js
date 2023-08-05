@@ -158,7 +158,7 @@ export default function CartPage() {
                     <tr>
                       <ProductInfoCell>
                         <ProductImg>
-                          <img src={product.images[0]} alt="" />
+                          <img src={product.images[0]} alt={product.title} />
                         </ProductImg>
                         {product.title}
                       </ProductInfoCell>
