@@ -221,12 +221,14 @@ function Categories({ swal }) {
                       <button
                         onClick={() => editCategory(category)}
                         className="btn-primary text-sm  mr-1"
+                        key="edit"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => deleteCategory(category)}
                         className="btn-red text-sm"
+                        key="delete"
                       >
                         Delete
                       </button>
