@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import { CartContext } from "@/components/CartContext";
 import Center from "@/components/Center";
 import Header from "@/components/Header";
 import ProductImages from "@/components/ProductImages";
@@ -7,6 +8,7 @@ import WhiteBox from "@/components/WhiteBox";
 import CartIcon from "@/icons/CartIcon";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
+import { useContext } from "react";
 import styled from "styled-components";
 
 const ColWrapper = styled.div`
@@ -27,6 +29,8 @@ const Price = styled.span`
 `;
 
 export default function ProductPage({ product }) {
+  const { addProduct } = useContext(CartContext);
+
   return (
     <>
       <Header />
@@ -43,7 +47,7 @@ export default function ProductPage({ product }) {
             <PriceRow>
               <Price>${product.price}</Price>
               <div>
-                <Button primary={1}>
+                <Button primary={1} onClick={() => addProduct(product._id)}>
                   <CartIcon />
                   Add to cart
                 </Button>
