@@ -15,25 +15,26 @@ export default function DeleteProductPage() {
     axios.get("/api/products?id=" + id).then((res) => {
       setProductInfo(res.data);
     });
-  },[id] );
+  }, [id]);
 
   function goBack() {
     router.push("/products");
   }
 
-
-  async function deleteProduct(){
-    await axios.delete('/api/products?id='+id);
+  async function deleteProduct() {
+    await axios.delete("/api/products?id=" + id);
     goBack();
   }
 
   return (
     <Layout>
       <h1 className="text-center">
-        Do you really want to delete "<em>{productInfo?.title}</em>"?
+        Do you really want to delete <em>{productInfo?.title}</em>?
       </h1>
       <div className="flex gap-2 justify-center">
-        <button className="btn-red" onClick={deleteProduct}>Yes</button>
+        <button className="btn-red" onClick={deleteProduct}>
+          Yes
+        </button>
         <button className="btn-default" onClick={goBack}>
           No
         </button>
