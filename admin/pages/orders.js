@@ -30,6 +30,7 @@ export default function Orders() {
               <tr>
                 <td>{new Date(order.createdAt).toLocaleString()}</td>
                 <td
+                  key={order._id}
                   className={
                     order.paid
                       ? "font-medium text-green-600"
