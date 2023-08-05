@@ -31,7 +31,11 @@ const ProductInfoBox = styled.div`
   margin-top: 5px;
 `;
 const PriceRow = styled.div`
-  display: flex;
+  display: block;
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+
   align-items: center;
   justify-content: space-between;
   margin-top: 2px;
