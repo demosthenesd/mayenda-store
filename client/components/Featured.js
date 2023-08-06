@@ -84,10 +84,7 @@ export default function Featured({ product }) {
             </div>
           </Column>
           <Column>
-            <img
-              src="https://mayenda-next-ecommerce.s3.amazonaws.com/10125362392386.jpg"
-              alt="kobe 6"
-            />
+            <img src={product.images?.[0]} alt={product.title} />
           </Column>
         </ColumnsWrapper>
       </Center>
