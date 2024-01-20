@@ -8,11 +8,11 @@ This is an E-commerce app I am building for my sister as an excuse to do a side 
 
 ![App Screenshot](/imgs/admin-snap.png)
 ![App Screenshot](/imgs/order-admin.png)
-![App Screenshot](/imgs/admin-categories.png)
 ![App Screenshot](/imgs/admin-products.png)
+![App Screenshot](/imgs/admin-categories.png)
 
 ## Client View
 
 ![App Screenshot](/imgs/front-home.png)
-![App Screenshot](/imgs/front-cart.png)
 ![App Screenshot](/imgs/client-product.png)
+![App Screenshot](/imgs/front-cart.png)
