@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import ProductsGrid from "@/components/ProductsGrid";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
+import Footer from "@/components/Footer";
 
 import Title from "@/components/Title";
 
