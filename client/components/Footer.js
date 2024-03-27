@@ -5,11 +5,12 @@ const FooterStyling = styled.footer`
   background-color: #222;
   color: #fff;
   padding: 20px;
+  margin-top: 60px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
 `;
 
@@ -29,7 +30,8 @@ const Footer = () => {
           <NavLink href="/contact">Contact</NavLink>
         </div>
         <div>
-          <p>&copy; {new Date().getFullYear()} Your Company</p>
+          <p>A Dems Demecillo Project </p>
+          <p>&copy; {new Date().getFullYear()} </p>
         </div>
       </Wrapper>
     </FooterStyling>
