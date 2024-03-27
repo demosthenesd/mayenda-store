@@ -68,7 +68,7 @@ export default function Header() {
     <HeaderStyling>
       <Center>
         <Wrapper>
-          <Logo href={"/"}>ECommerce</Logo>
+          <Logo href={"/"}>Mayenda</Logo>
           <StyledNav mobileNavActive={mobileNavActive}>
             <NavLink href={"/"}>Home</NavLink>
             <NavLink href={"/products"}>Products</NavLink>
