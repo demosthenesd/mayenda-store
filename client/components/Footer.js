@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
-
+import { CartContext } from "./CartContext";
+import Center from "./Center";
 const FooterStyling = styled.footer`
   background-color: #222;
   color: #fff;
@@ -19,21 +20,22 @@ const NavLink = styled(Link)`
   text-decoration: none;
   margin-right: 15px;
 `;
+const { cartProducts } = useContext(CartContext);
 
 const Footer = () => {
   return (
     <FooterStyling>
-      <Wrapper>
+      <Center>
         <div>
-          <NavLink href="/">Home</NavLink>
-          <NavLink href="/about">About</NavLink>
-          <NavLink href="/contact">Contact</NavLink>
+          <NavLink href={"/"}>Home</NavLink>
+          <NavLink href={"/products"}>Products</NavLink>
+          <NavLink href={"/cart"}>Cart ({cartProducts.length})</NavLink>
         </div>
         <div>
           <p>A Dems Demecillo Project </p>
           <p>&copy; {new Date().getFullYear()} </p>
         </div>
-      </Wrapper>
+      </Center>
     </FooterStyling>
   );
 };
